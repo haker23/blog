@@ -4,17 +4,19 @@
 set -e
 
 # 生成静态文件
-npm run docs:build
+yarn build
 
 # 进入生成的文件夹
 cd docs/.vuepress/dist
 
 # 如果是发布到自定义域名
 # echo 'www.example.com' > CNAME
-git add .
-git commit -m "first commit"
-git branch -M main
-git remote add origin https://github.com/haker23/blog.git
-git push -u origin main
+
+git init
+git add -A
+git commit -m 'deploy'
+
+# 把上面的 <USERNAME> 换成你自己的 Github 用户名，<REPO> 换成仓库名，比如我这里就是：
+git push -f git@github.com:haker23/blog.git master:gh-pages
 
 cd -
